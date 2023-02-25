@@ -1,17 +1,18 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/23 15:55:18 by houaslam          #+#    #+#              #
-#    Updated: 2023/02/25 21:19:58 by houaslam         ###   ########.fr        #
+#    Updated: 2023/02/25 21:35:53 by houaslam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address 
+# CFLAGS = -Wall -Wextra -Werror 
 
 SRCS = philo.c \
 	  atoi.c
