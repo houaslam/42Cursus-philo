@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:51:19 by houaslam          #+#    #+#             */
-/*   Updated: 2023/02/25 23:39:24 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/02/26 20:42:47 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,3 +67,4 @@ int	main(int ac, char **av)
 	else
 		write(2, "NUMBER OF ARGUMENTS IS INVALID\n", 31);
 }
+
