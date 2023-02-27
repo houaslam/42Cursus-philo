@@ -6,12 +6,12 @@
 #    By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/23 15:55:18 by houaslam          #+#    #+#              #
-#    Updated: 2023/02/25 21:35:53 by houaslam         ###   ########.fr        #
+#    Updated: 2023/02/27 17:54:11 by houaslam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address 
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=thread
 # CFLAGS = -Wall -Wextra -Werror 
 
 SRCS = philo.c \
