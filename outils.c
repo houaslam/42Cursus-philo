@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   atoi.c                                             :+:      :+:    :+:   */
+/*   outils.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:29:49 by houaslam          #+#    #+#             */
-/*   Updated: 2023/02/28 13:12:32 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/02/28 16:43:10 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,3 +41,26 @@ int	ft_atoi(const char *str)
 	return (nb * sign);
 }
 
+void	initialize_data(t_data **data, char **av, int ac)
+{
+	int		i;
+
+	i = 0;
+	(*data) = malloc(sizeof(t_data));
+	(*data)->p_nb = ft_atoi(av[1]);
+	(*data)->t_die = ft_atoi(av[2]);
+	(*data)->t_eat = ft_atoi(av[3]);
+	(*data)->t_sleep = ft_atoi(av[4]);
+	if (ac == 6)
+		(*data)->m_nb = ft_atoi(av[5]);
+	(*data)->philo = malloc(sizeof(t_philo) * (*data)->p_nb);
+	(*data)->forks = malloc(sizeof(pthread_mutex_t) * (*data)->p_nb);
+	while (i < (*data)->p_nb)
+	{
+		(*data)->philo[i].nb = i + 1;
+		(*data)->philo[i].data = *data;
+		(*data)->philo[i].m_nb = 0;
+		pthread_mutex_init(&(*data)->forks[i], NULL);
+		i++;
+	}
+}

@@ -6,7 +6,7 @@
 #    By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/23 15:55:18 by houaslam          #+#    #+#              #
-#    Updated: 2023/02/28 14:31:58 by houaslam         ###   ########.fr        #
+#    Updated: 2023/02/28 16:23:21 by houaslam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 # CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=thread
 
 SRCS = philo.c \
-	  atoi.c
+	  outils.c
 
 
 all : ${NAME}

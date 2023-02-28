@@ -6,37 +6,13 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 13:15:23 by houaslam          #+#    #+#             */
-/*   Updated: 2023/02/28 16:15:01 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/02/28 16:45:43 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-//./philo [1]philo_nb [2]time_to_die [3]time_to_eat [4]time_to_sleep [5]nb_of_philosophers_meals
-
-
-// void	initialize_data(t_data *data, char **av, int ac)
-// {
-// 	int		i;
-//
-// 	i = 0;
-// 	data = malloc(sizeof(t_data));
-// 	data->p_nb = ft_atoi(av[1]);
-// 	data->t_die = ft_atoi(av[2]);
-// 	data->t_eat = ft_atoi(av[3]);
-// 	data->t_sleep = ft_atoi(av[4]);
-// 	if (ac == 6)
-// 		data->m_nb = ft_atoi(av[5]);
-// 	data->philo = malloc(sizeof(t_philo) * data->p_nb);
-// 	data->forks = malloc(sizeof(pthread_mutex_t) * data->p_nb);
-// 	while (i < data->p_nb)
-// 	{
-// 		data->philo[i].nb = i + 1;
-// 		data->philo[i].data = data;
-// 		data->philo[i].m_nb = 0;
-// 		pthread_mutex_init(&data->forks[i], NULL);
-// 		i++;
-// 	}
-// }
+//./philo [1]philo_nb [2]time_to_die [3]time_to_eat 
+//[4]time_to_sleep [5]nb_of_philosophers_meals
 
 void	*routine(void	*ptr)
 {
@@ -100,23 +76,26 @@ int	main(int ac, char **av)
 
 	i = 0;
 	data = malloc(sizeof(t_data));
-	data->p_nb = ft_atoi(av[1]);
-	data->t_die = ft_atoi(av[2]);
-	data->t_eat = ft_atoi(av[3]);
-	data->t_sleep = ft_atoi(av[4]);
-	if (ac == 6)
-		data->m_nb = ft_atoi(av[5]);
-	data->philo = malloc(sizeof(t_philo) * data->p_nb);
-	data->forks = malloc(sizeof(pthread_mutex_t) * data->p_nb);
-	while (i < data->p_nb)
-	{
-		data->philo[i].nb = i + 1;
-		data->philo[i].data = data;
-		data->philo[i].m_nb = 0;
-		pthread_mutex_init(&data->forks[i], NULL);
-		i++;
-	}
-	i = 0;
+	// data->p_nb = ft_atoi(av[1]);
+	// data->t_die = ft_atoi(av[2]);
+	// data->t_eat = ft_atoi(av[3]);
+	// data->t_sleep = ft_atoi(av[4]);
+	// if (ac == 6)
+	// 	data->m_nb = ft_atoi(av[5]);
+	// data->philo = malloc(sizeof(t_philo) * data->p_nb);
+	// data->forks = malloc(sizeof(pthread_mutex_t) * data->p_nb);
+	// while (i < data->p_nb)
+	// {
+	// 	data->philo[i].nb = i + 1;
+	// 	data->philo[i].data = data;
+	// 	data->philo[i].m_nb = 0;
+	// 	pthread_mutex_init(&data->forks[i], NULL);
+	// 	i++;
+	// }
+	// i = 0;
+	initialize_data(&data, av ,ac);
+	printf("******%d\n", data->p_nb);
+	philo_fork(data);
 	while (i < data->p_nb)
 	{
 		pthread_create(&data->philo[i].t, NULL, routine, &data->philo[i]);
