@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:29:49 by houaslam          #+#    #+#             */
-/*   Updated: 2023/02/28 16:43:10 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/02/28 19:26:53 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,18 @@ void	initialize_data(t_data **data, char **av, int ac)
 		pthread_mutex_init(&(*data)->forks[i], NULL);
 		i++;
 	}
+	(*data)->meals = 0;
+}
+
+int	count_meals(t_data data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data.p_nb)
+	{
+		if (data.philo[i].m_nb != data.m_nb)
+			return (0);
+	}
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:43:36 by houaslam          #+#    #+#             */
-/*   Updated: 2023/02/28 16:37:22 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/02/28 19:20:21 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct t_data{
 	int				t_eat;
 	int				t_sleep;
 	int				m_nb;
+	int				meals;
 	t_philo			*philo;
 	pthread_mutex_t	*forks;
 }	t_data;
@@ -43,6 +44,7 @@ typedef struct t_data{
 
 int		ft_atoi(const char *str);
 void	initialize_data(t_data **data, char **av, int ac);
+int		count_meals(t_data data);
 
 
 #endif
