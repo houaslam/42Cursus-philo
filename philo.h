@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:43:36 by houaslam          #+#    #+#             */
-/*   Updated: 2023/02/28 13:11:36 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/02/28 16:14:28 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,30 +22,24 @@
 # include <sys/time.h>
 
 typedef struct t_philo{
-	int					nb;
-	int					last_meal;
 	pthread_t			t;
-	pthread_mutex_t		*lf;
+	int					nb;
+	int					m_nb;
+	struct t_data		*data;
 	pthread_mutex_t		*rf;
+	pthread_mutex_t		*lf;
 }				t_philo;
 
 typedef struct t_data{
-	int					meal_nb;
-	int					i;
-	int					philo_nb;
-	int					time_to_die;
-	int					time_to_eat;
-	int					time_to_sleep;
-	int					number_of_times_each_philosopher_must_eat;
-	t_philo				*philo;
-	pthread_mutex_t		*fork;
-	struct timeval		c_time;
-	struct timeval		e_time;
-}				t_data;
+	int				p_nb;
+	int				t_die;
+	int				t_eat;
+	int				t_sleep;
+	int				m_nb;
+	t_philo			*philo;
+	pthread_mutex_t	*forks;
+}	t_data;
 
-int		ft_atoi(const char *str);
-void	initialize_data(t_data *data, char **av, int ac);
-void	forks(t_data *data);
-void	*routine(void *ptr);
 
+int	ft_atoi(const char *str);
 #endif
