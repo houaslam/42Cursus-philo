@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:29:49 by houaslam          #+#    #+#             */
-/*   Updated: 2023/02/28 19:26:53 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/02/28 20:13:24 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,34 @@ int	count_meals(t_data data)
 		if (data.philo[i].m_nb != data.m_nb)
 			return (0);
 	}
+	return (1);
+}
+
+int	check_int(char **str)
+{
+	int		i;
+	int		j;
+
+	j = 1;
+	while (str[j])
+	{
+		i = 0;
+		while (str[j][i])
+		{
+			if (str[j][i] == '+' || str[j][i] == ' ')
+				i++;
+			if (!((str[j][i] >= '0' && str[j][i] <= '9') || str[j][i] == ' '))
+				return (0);
+			i++;
+		}
+		j++;
+	}
+	return (1);
+}
+
+int	check_value(t_data *data)
+{
+	if (data->p_nb > 200 || data->t_die < 60 || data->t_eat < 60)
+		return (0);
 	return (1);
 }

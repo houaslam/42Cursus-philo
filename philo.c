@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 13:15:23 by houaslam          #+#    #+#             */
-/*   Updated: 2023/02/28 19:27:28 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/02/28 20:46:05 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	*routine(void	*ptr)
 		usleep(philo->data->t_eat * 1000);
 		printf("%d is eating\n", philo->nb);
 		philo->m_nb++;
+		gettimeofday(&philo->data->e_time, NULL);
 		pthread_mutex_unlock(philo->rf);
 		pthread_mutex_unlock(philo->lf);
 		printf("%d is sleeping\n", philo->nb);
@@ -64,16 +65,25 @@ int	main(int ac, char **av)
 
 	i = 0;
 	data = malloc(sizeof(t_data));
+	if (check_int(av) == 0)
+		return (1);
 	initialize_data(&data, av, ac);
+	if (check_value(data) == 0)
+		return (1);
 	philo_fork(data);
 	while (i < data->p_nb)
 	{
 		pthread_create(&data->philo[i].t, NULL, routine, &data->philo[i]);
+		gettimeofday(&data->c_time, NULL);
+		data->r_time = data->e_time.tv_sec/1000 - data->c_time.tv_sec/1000 ;
+		printf("%d\n", data->r_time);
+		// exit(0);
 		i++;
 	}
 	while (1)
 	{
-		if (ac == 6 && data->meals == data->p_nb)
+		if ((ac == 6 && data->meals == data->p_nb) \
+		|| data->r_time >= data->t_die)
 			return (0);
 	}
 }
