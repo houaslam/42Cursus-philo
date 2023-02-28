@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:51:19 by houaslam          #+#    #+#             */
-/*   Updated: 2023/02/28 11:55:30 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/02/28 13:11:02 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,27 @@ void	initialize_data(t_data *data, char **av, int ac)
 		pthread_mutex_init(&data->fork[i], NULL);
 		i++;
 	}
-	data->i = 0;
 	// gettimeofday(&data->e_time, NULL);
 }
 
-// void	philo_fork(t_data *data)
-// {
-// 	int	i;
+void	philo_fork(t_data *data)
+{
+	int	i;
 
-// 	i = 0;
-// 	while (i < data->philo_nb)
-// 	{		
-// 		if (i + 1 == data->philo_nb)
-// 		{
-// 			data->philo[i].lf = &data->fork[0];
-// 			data->philo[i].rf = &data->fork[i];
-// 			return ;
-// 		}
-// 		data->philo[i].lf = &data->fork[i + 1];
-// 		data->philo[i].rf = &data->fork[i];
-// 		i++;
-// 	}
-// }
+	i = 0;
+	while (i < data->philo_nb)
+	{		
+		if (i + 1 == data->philo_nb)
+		{
+			data->philo[i].lf = &data->fork[0];
+			data->philo[i].rf = &data->fork[i];
+			return ;
+		}
+		data->philo[i].lf = &data->fork[i + 1];
+		data->philo[i].rf = &data->fork[i];
+		i++;
+	}
+}
 
 void	*routine(void	*ptr)
 {
@@ -62,14 +61,13 @@ void	*routine(void	*ptr)
 	data = (t_data *)ptr;
 	while (1)
 	{
-		printf("data.i = %d\n", data->i);
-		pthread_mutex_lock(&data->fork[data->i]);
-		pthread_mutex_lock(&data->fork[data->i + 1]);
+		pthread_mutex_lock(data->philo[data->i].rf);
+		pthread_mutex_lock(data->philo[data->i].lf);
 		printf("%d took a fork\n", data->philo[data->i].nb);
 		usleep(data->time_to_eat * 1000);
 		printf("%d is eating\n", data->philo[data->i].nb);
-		pthread_mutex_unlock(&data->fork[data->i + 1]);
-		pthread_mutex_unlock(&data->fork[data->i]);
+		pthread_mutex_unlock(data->philo[data->i].rf);
+		pthread_mutex_unlock(data->philo[data->i].lf);
 		data->meal_nb ++;
 		printf("%d is sleeping\n", data->philo[data->i].nb);
 		usleep(data->time_to_sleep * 1000);
@@ -80,17 +78,19 @@ void	*routine(void	*ptr)
 
 int	main(int ac, char **av)
 {
-	t_data		data;
+	t_data		*data;
 
+	data = (t_data *)malloc(sizeof(t_data));
 	if (ac == 6 || ac == 5)
 	{
-		initialize_data(&data, av, ac);
-		// philo_fork(&data);
-		printf("test |%d|\n", data.philo_nb);
-		data.i = 0;
-		while (data.i < data.philo_nb - 1)
+		initialize_data(data, av, ac);
+		philo_fork(data);
+		// printf("test |%d|\n", data.philo_nb);
+		data->i = 0;
+		while (data->i < data->philo_nb)
 		{	
-			pthread_create(&data.philo[data.i++].t, NULL, routine, &data);
+			pthread_create(&data->philo[data->i].t, NULL, routine, data);
+			data->i++;
 		}
 		// while (1)
 		// {

@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:43:36 by houaslam          #+#    #+#             */
-/*   Updated: 2023/02/28 11:40:19 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/02/28 13:11:36 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,16 @@
 # include <sys/time.h>
 
 typedef struct t_philo{
-	pthread_t			t;
 	int					nb;
-	pthread_mutex_t		*lf;
 	int					last_meal;
+	pthread_t			t;
+	pthread_mutex_t		*lf;
 	pthread_mutex_t		*rf;
 }				t_philo;
 
 typedef struct t_data{
 	int					meal_nb;
 	int					i;
-	int					*tab;
 	int					philo_nb;
 	int					time_to_die;
 	int					time_to_eat;
