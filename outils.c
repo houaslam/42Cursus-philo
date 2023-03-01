@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:29:49 by houaslam          #+#    #+#             */
-/*   Updated: 2023/02/28 20:13:24 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/03/01 17:44:04 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	initialize_data(t_data **data, char **av, int ac)
 	(*data)->forks = malloc(sizeof(pthread_mutex_t) * (*data)->p_nb);
 	while (i < (*data)->p_nb)
 	{
+		(*data)->philo[i].rt = 0;
 		(*data)->philo[i].nb = i + 1;
 		(*data)->philo[i].data = *data;
 		(*data)->philo[i].m_nb = 0;
@@ -64,6 +65,7 @@ void	initialize_data(t_data **data, char **av, int ac)
 		i++;
 	}
 	(*data)->meals = 0;
+	(*data)->res = 0;
 }
 
 int	count_meals(t_data data)

@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 10:43:36 by houaslam          #+#    #+#             */
-/*   Updated: 2023/02/28 20:41:31 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/03/01 17:34:23 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,18 @@ typedef struct t_philo{
 	int					nb;
 	int					m_nb;
 	struct t_data		*data;
+	struct timeval		lm_t;
 	pthread_mutex_t		*rf;
 	pthread_mutex_t		*lf;
+	struct timeval		t2;
+	struct timeval		t1;
+	unsigned long		rt;
 }				t_philo;
 
 typedef struct t_data{
+	struct timeval	start;
+	struct timeval	now;
+	int				res;
 	int				p_nb;
 	int				t_die;
 	int				t_eat;
@@ -38,8 +45,6 @@ typedef struct t_data{
 	int				m_nb;
 	int				meals;
 	t_philo			*philo;
-	struct timeval	c_time;
-	struct timeval	e_time;
 	int				r_time;
 	pthread_mutex_t	*forks;
 }	t_data;
