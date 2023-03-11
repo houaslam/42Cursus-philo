@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:15:34 by houaslam          #+#    #+#             */
-/*   Updated: 2023/03/04 14:23:25 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/03/10 18:43:56 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ void	initialize_forks(t_data *data)
 
 	i = 0;
 	while (i < data->p_nb)
-	{
-		pthread_mutex_init(&data->forks[i], NULL);
-		i++;
-	}
+		pthread_mutex_init(&data->forks[i++], NULL);
 	i = 0;
 	while (i < data->p_nb)
 	{		
@@ -75,8 +72,8 @@ t_data	*initialize_general(int ac, char **av)
 	data->philo = malloc (sizeof(t_philo) * data->p_nb);
 	if (!data->forks || !data->philo)
 		return (NULL);
-	initialize_forks(data);
 	initialize_philo(data);
+	initialize_forks(data);
 	return (data);
 }
 
@@ -89,8 +86,8 @@ void	initialize_threads(t_data *data)
 	while (i < data->p_nb)
 	{
 		data->philo[i].store = now_time();
-		pthread_create(&data->philo[i].t, NULL, \
-		globale_action, &data->philo[i]);
+		pthread_create(&data->philo[i].t, \
+		NULL, globale_action, &data->philo[i]);
 		usleep(100);
 		i++;
 	}

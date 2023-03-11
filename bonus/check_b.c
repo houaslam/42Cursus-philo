@@ -1,38 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   check_b.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 20:29:16 by houaslam          #+#    #+#             */
-/*   Updated: 2023/03/04 14:23:36 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/03/10 18:22:04 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
-void	check_loop(t_data *data)
+void	check_wait(t_data *data)
 {
-	int				i;
+	int	i;
+	int	status;
 
 	i = 0;
 	while (i < data->p_nb)
 	{
-		pthread_mutex_lock(&data->meals);
-		if (data->check1 == data->p_nb)
-			return ;
-		pthread_mutex_unlock(&data->meals);
-		pthread_mutex_lock(&data->death);
-		if (now_time() - data->philo[i].store > (unsigned long)data->t_die)
+		waitpid(-1, &status, 0);
+		if (status != 0)
 		{
-			printf_msg("is dead", &data->philo[i], 1);
-			return ;
-		}
-		pthread_mutex_unlock(&data->death);
-		if (i + 1 == data->p_nb)
 			i = 0;
+			while (i < data->p_nb)
+				kill(data->philo[i++].id, SIGKILL);
+			sem_close(data->sem);
+			free(data);
+			free(data->philo);
+			exit(0);
+		}
 		i++;
+	}
+}
+
+void	*check_loop_b(void *arg)
+{
+	t_philo			*philo;
+	int				res;
+
+	philo = (t_philo *)arg;
+	while (1)
+	{
+		//TODO : test without timeval
+		res = now_time() - right_time(philo->store);
+		if (res > philo->data->t_die)
+		{
+			printf_msg("is dead", philo);
+			exit(EXIT_FAILURE);
+		}	
 	}
 }
 
@@ -72,7 +89,7 @@ int	check_data(t_data *data, int ac)
 	return (0);
 }
 
-unsigned long	now_time(void)
+int	now_time(void)
 {
 	struct timeval	now;
 

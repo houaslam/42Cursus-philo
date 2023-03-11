@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 20:26:20 by houaslam          #+#    #+#             */
-/*   Updated: 2023/03/04 14:17:46 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/03/08 20:39:41 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,3 @@ void	*globale_action(void	*ptr)
 	}
 	return (NULL);
 }
-
-// void	update_time(t_philo *philo)
-// {
-// 	// struct timeval	now;
-
-// 	// gettimeofday(&now, NULL);
-// 	// pthread_mutex_lock(&philo->data->death);
-// 	// philo->death = philo->store - philo->death;
-// 	// pthread_mutex_unlock(&philo->data->death);
-// }
