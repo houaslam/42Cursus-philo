@@ -6,14 +6,14 @@
 #    By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/02 16:48:53 by houaslam          #+#    #+#              #
-#    Updated: 2023/03/10 16:05:53 by houaslam         ###   ########.fr        #
+#    Updated: 2023/03/12 18:12:25 by houaslam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 BONUS = philo_bonus
 # CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=thread -g3
+CFLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=thread 
 
 SRCS = mandatory/philo.c \
 	   mandatory/outil.c \

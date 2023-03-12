@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:17:50 by houaslam          #+#    #+#             */
-/*   Updated: 2023/03/10 12:35:40 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/03/12 22:42:35 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void				initialize_process(t_data *data);
 
 //check
 void				*check_loop_b(void	*arg);
-int					check_data(t_data *data, int ac);
-int					check_arg(char **str);
+void					check_data(t_data *data, int ac);
+void				check_arg(char **str);
 
 //action
 void				taking_fork_action_b(t_philo *philo);

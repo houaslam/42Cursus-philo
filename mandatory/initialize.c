@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:15:34 by houaslam          #+#    #+#             */
-/*   Updated: 2023/03/10 18:43:56 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/03/12 22:36:51 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,10 @@ t_data	*initialize_general(int ac, char **av)
 {
 	t_data	*data;
 
-	if (check_arg(av) == 1)
-		return (NULL);
+	if (check_arg(av) == 1
 	data = malloc (sizeof(t_data));
 	if (!data)
-		return (NULL);
+		exit(1);
 	data->p_nb = ft_atoi(av[1]);
 	data->t_die = ft_atoi(av[2]);
 	data->t_eat = ft_atoi(av[3]);

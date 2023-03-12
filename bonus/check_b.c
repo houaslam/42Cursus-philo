@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 20:29:16 by houaslam          #+#    #+#             */
-/*   Updated: 2023/03/10 18:22:04 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/03/12 22:42:53 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	*check_loop_b(void *arg)
 	philo = (t_philo *)arg;
 	while (1)
 	{
-		//TODO : test without timeval
 		res = now_time() - right_time(philo->store);
+		printf("");
 		if (res > philo->data->t_die)
 		{
 			printf_msg("is dead", philo);
@@ -53,7 +53,7 @@ void	*check_loop_b(void *arg)
 	}
 }
 
-int	check_arg(char **str)
+void	check_arg(char **str)
 {
 	int		i;
 	int		j;
@@ -68,25 +68,23 @@ int	check_arg(char **str)
 				i++;
 			if (!((str[j][i] >= '0' && str[j][i] <= '9') || str[j][i] == ' '))
 			{
-				printf("error\n");
-				return (1);
+				printf("Error\n");
+				exit(1);
 			}
 			i++;
 		}
 		j++;
 	}
-	return (0);
 }
 
-int	check_data(t_data *data, int ac)
+void	check_data(t_data *data, int ac)
 {
 	if (data->p_nb < 0 || data->t_die < 0)
-		return (1);
+		ft_putstr_fd("ERROR\n", 2);
 	if (data->t_sleep < 0 || data->t_eat < 0)
-		return (1);
+		ft_putstr_fd("ERROR\n", 2);
 	if (ac == 6 && data->nb_m < 0)
-		return (1);
-	return (0);
+		ft_putstr_fd("ERROR\n", 2);
 }
 
 int	now_time(void)

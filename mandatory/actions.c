@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 20:26:20 by houaslam          #+#    #+#             */
-/*   Updated: 2023/03/08 20:39:41 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/03/12 18:08:22 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_usleep(unsigned long time_2)
 	unsigned long	time;
 
 	time = now_time();
-	while ((now_time() - time) < time_2)
+	while ((now_time() - time) <= time_2)
 		usleep(100);
 }
 
@@ -33,14 +33,20 @@ void	eating_action(t_philo *philo)
 {
 	printf_msg("is eating", philo, 0);
 	ft_usleep(philo->data->t_eat);
-	philo->store = now_time();
 	pthread_mutex_unlock(philo->rf);
 	pthread_mutex_unlock(philo->lf);
+	pthread_mutex_lock(&philo->data->death);
+	philo->store = now_time();
+	pthread_mutex_unlock(&philo->data->death);
 	pthread_mutex_lock(&philo->data->meals);
 	philo->m_nb++;
-	if (philo->m_nb == philo->data->nb_m)
-			philo->data->check1++;
 	pthread_mutex_unlock(&philo->data->meals);
+	if (philo->m_nb == philo->data->nb_m)
+	{
+		pthread_mutex_lock(&philo->data->meals);
+		philo->data->check1++;
+		pthread_mutex_unlock(&philo->data->meals);
+	}
 }
 
 void	sleeping_action(t_philo *philo)
@@ -48,8 +54,6 @@ void	sleeping_action(t_philo *philo)
 	printf_msg("is sleeping", philo, 0);
 	ft_usleep(philo->data->t_sleep);
 	printf_msg("is thinking", philo, 0);
-	pthread_mutex_lock(&philo->data->death);
-	pthread_mutex_unlock(&philo->data->death);
 }
 
 void	*globale_action(void	*ptr)

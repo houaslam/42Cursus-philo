@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:15:34 by houaslam          #+#    #+#             */
-/*   Updated: 2023/03/10 16:08:45 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/03/12 22:42:42 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ t_data	*initialize_general_b(int ac, char **av)
 {
 	t_data	*data;
 
-	if (check_arg(av) == 1)
-		return (NULL);
+	check_arg(av);
 	data = malloc(sizeof(t_data));
 	if (!data)
 		return (NULL);
@@ -55,8 +54,7 @@ t_data	*initialize_general_b(int ac, char **av)
 	data->t_sleep = ft_atoi(av[4]);
 	if (ac == 6)
 		data->nb_m = ft_atoi(av[5]);
-	if (check_data(data, ac) == 1)
-		return (NULL);
+	check_data(data, ac);
 	data->philo = malloc(sizeof(t_philo) * data->p_nb);
 	initialize_childs(data);
 	initialize_semaphore(data);
