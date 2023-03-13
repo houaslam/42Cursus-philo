@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:17:50 by houaslam          #+#    #+#             */
-/*   Updated: 2023/03/12 22:42:35 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/03/13 15:16:02 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,45 +25,45 @@
 
 typedef struct t_philo
 {
-	int				nb;
-	int				m_nb;
-	struct t_data	*data;
-	int				death;
-	sem_t			rf;
-	sem_t			lf;
-	struct timeval	store;
-	pid_t			id;
 	int				d;
 	int				k;
+	int				nb;
+	int				m_nb;
+	int				death;
+	pid_t			id;
+	sem_t			rf;
+	sem_t			lf;
+	struct t_data	*data;
+	struct timeval	store;
 }				t_philo;
 
 typedef struct t_data
 {
-	sem_t			*death;
-	int				p_nb;
-	pthread_t		t;
-	int				t_die;
-	int				t_sleep;
-	int				t_eat;
-	sem_t			*print;
-	struct timeval	start_time;
 	int				nb_m;
+	int				p_nb;
+	int				t_die;
+	int				t_eat;
 	int				check1;
-	sem_t			*sem;
-	t_philo			*philo;
+	int				t_sleep;
 	sem_t			*eat;
+	sem_t			*sem;
+	sem_t			*death;
+	sem_t			*print;
+	t_philo			*philo;
+	pthread_t		t;
 	struct timeval	now;
+	struct timeval	start_time;
 }				t_data;
 
 //initialize
-t_data				*initialize_general_b(int ac, char **av);
-void				initialize_childs_b(t_data *data);
 void				initialize_process(t_data *data);
+void				initialize_childs_b(t_data *data);
+t_data				*initialize_general_b(int ac, char **av);
 
 //check
 void				*check_loop_b(void	*arg);
-void					check_data(t_data *data, int ac);
 void				check_arg(char **str);
+void				check_data(t_data *data, int ac);
 
 //action
 void				taking_fork_action_b(t_philo *philo);

@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:15:34 by houaslam          #+#    #+#             */
-/*   Updated: 2023/03/12 22:36:51 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/03/13 15:08:50 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,32 +50,6 @@ void	initialize_philo(t_data *data)
 	}
 }
 
-t_data	*initialize_general(int ac, char **av)
-{
-	t_data	*data;
-
-	if (check_arg(av) == 1
-	data = malloc (sizeof(t_data));
-	if (!data)
-		exit(1);
-	data->p_nb = ft_atoi(av[1]);
-	data->t_die = ft_atoi(av[2]);
-	data->t_eat = ft_atoi(av[3]);
-	data->t_sleep = ft_atoi(av[4]);
-	if (ac == 6)
-		data->nb_m = ft_atoi(av[5]);
-	if (check_data(data, ac) == 1)
-		return (NULL);
-	initialize_mutex(data);
-	data->forks = malloc (sizeof(pthread_mutex_t) * data->p_nb);
-	data->philo = malloc (sizeof(t_philo) * data->p_nb);
-	if (!data->forks || !data->philo)
-		return (NULL);
-	initialize_philo(data);
-	initialize_forks(data);
-	return (data);
-}
-
 void	initialize_threads(t_data *data)
 {
 	int	i;
@@ -98,4 +72,31 @@ void	initialize_mutex(t_data *data)
 	pthread_mutex_init(&data->meals, NULL);
 	pthread_mutex_init(&data->death, NULL);
 	pthread_mutex_init(&data->time, NULL);
+}
+
+t_data	*initialize_general(int ac, char **av)
+{
+	t_data	*data;
+
+	if (check_arg(av) == 1)
+		return (NULL);
+	data = malloc (sizeof(t_data));
+	if (!data)
+		return (NULL);
+	data->p_nb = ft_atoi(av[1]);
+	data->t_die = ft_atoi(av[2]);
+	data->t_eat = ft_atoi(av[3]);
+	data->t_sleep = ft_atoi(av[4]);
+	if (ac == 6)
+		data->nb_m = ft_atoi(av[5]);
+	if (check_data(data, ac) == 1)
+		return (NULL);
+	initialize_mutex(data);
+	data->forks = malloc (sizeof(pthread_mutex_t) * data->p_nb);
+	data->philo = malloc (sizeof(t_philo) * data->p_nb);
+	if (!data->forks || !data->philo)
+		return (NULL);
+	initialize_philo(data);
+	initialize_forks(data);
+	return (data);
 }

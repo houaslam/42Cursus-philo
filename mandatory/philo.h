@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:46:51 by houaslam          #+#    #+#             */
-/*   Updated: 2023/03/12 22:39:32 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/03/13 15:16:43 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ typedef struct t_philo
 {
 	int				nb;
 	int				m_nb;
-	struct t_data	*data;
-	pthread_t		t;
+	int				d;
 	int				death;
-	pthread_mutex_t	*rf;
-	pthread_mutex_t	*lf;
+	pthread_t		t;
+	struct t_data	*data;
+	unsigned long	store;
 	struct timeval	d2;
 	struct timeval	d1;
-	unsigned long	store;
-	int				d;
+	pthread_mutex_t	*rf;
+	pthread_mutex_t	*lf;
 }				t_philo;
 
 typedef struct t_data
@@ -41,11 +41,11 @@ typedef struct t_data
 	int				t_die;
 	int				t_sleep;
 	int				t_eat;
-	struct timeval	start_time;
 	int				nb_m;
 	int				check1;
 	t_philo			*philo;
 	struct timeval	now;
+	struct timeval	start_time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print;
 	pthread_mutex_t	time;
@@ -53,23 +53,31 @@ typedef struct t_data
 	pthread_mutex_t	death;
 }				t_data;
 
-int					ft_atoi(const char *str);
-void				initialize_threads(t_data *data);
+//check 
+void				check_loop(t_data *data);
+int					check_arg(char **string);
+int					check_data(t_data *data, int ac);
+
+//initialize
 void				initialize_forks(t_data *data);
 void				initialize_philo(t_data *data);
-void				printf_msg(char *str, t_philo *philo, int i);
-void				taking_fork_action(t_philo *philo);
-void				*globale_action(void	*ptr);
-void				taking_fork_action(t_philo *philo);
-void				eating_action(t_philo *philo);
-void				sleeping_action(t_philo *philo);
-void				check_loop(t_data *data);
-t_data				*initialize_general(int ac, char **av);
-unsigned long		right_time(struct timeval time);
 void				initialize_mutex(t_data *data);
-int					check_arg(char **str);
-int					check_data(t_data *data, int ac);
+void				initialize_threads(t_data *data);
+t_data				*initialize_general(int ac, char **av);
+
+//actions
+void				eating_action(t_philo *philo);
+void				*globale_action(void	*ptr);
+void				sleeping_action(t_philo *philo);
+void				taking_fork_action(t_philo *philo);
+
+//utils
+int					ft_atoi(char *str);
 void				ft_usleep(unsigned long time_2);
+void				printf_msg(char *str, t_philo *philo, int i);
+
+//time
 unsigned long		now_time(void);
+unsigned long		right_time(struct timeval time);
 
 #endif

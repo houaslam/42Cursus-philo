@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 20:29:16 by houaslam          #+#    #+#             */
-/*   Updated: 2023/03/12 22:38:09 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/03/13 15:00:25 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,11 @@ int	check_arg(char **str)
 
 int	check_data(t_data *data, int ac)
 {
-	if (data->p_nb < 0 || data->t_die < 0)
+	if (data->p_nb <= 0 || data->t_die <= 0)
 		return (1);
-	if (data->t_sleep < 0 || data->t_eat < 0)
+	if (data->t_sleep <= 0 || data->t_eat <= 0)
 		return (1);
-	if (ac == 6 && data->nb_m < 0)
+	if (ac == 6 && data->nb_m <= 0)
 		return (1);
 	return (0);
 }

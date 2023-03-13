@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 20:29:16 by houaslam          #+#    #+#             */
-/*   Updated: 2023/03/12 22:42:53 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/03/13 14:24:48 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,11 @@ void	check_arg(char **str)
 
 void	check_data(t_data *data, int ac)
 {
-	if (data->p_nb < 0 || data->t_die < 0)
+	if (data->p_nb <= 0 || data->t_die <= 0)
 		ft_putstr_fd("ERROR\n", 2);
-	if (data->t_sleep < 0 || data->t_eat < 0)
+	if (data->t_sleep <= 0 || data->t_eat <= 0)
 		ft_putstr_fd("ERROR\n", 2);
-	if (ac == 6 && data->nb_m < 0)
+	if (ac == 6 && data->nb_m <= 0)
 		ft_putstr_fd("ERROR\n", 2);
 }
 
