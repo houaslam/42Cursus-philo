@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 20:29:16 by houaslam          #+#    #+#             */
-/*   Updated: 2023/03/13 15:00:25 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/03/14 22:00:03 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,25 @@ void	check_loop(t_data *data)
 	int				i;
 	int				res;
 
-	i = 0;
-	while (i < data->p_nb)
+	while (1)
 	{
-		pthread_mutex_lock(&data->meals);
-		if (data->check1 == data->p_nb)
-			return ;
-		pthread_mutex_unlock(&data->meals);
-		pthread_mutex_lock(&data->death);
-		res = now_time() - data->philo[i].store ;
-		pthread_mutex_unlock(&data->death);
-		if (res > data->t_die)
+		i = 0;
+		while (i < data->p_nb)
 		{
-			printf_msg("is dead", &data->philo[i], 1);
-			return ;
-		}
-		if (i + 1 == data->p_nb)
-			i = 0;
-		else
+			pthread_mutex_lock(&data->meals);
+			if (data->check1 == data->p_nb)
+				return ;
+			pthread_mutex_unlock(&data->meals);
+			pthread_mutex_lock(&data->death);
+			res = now_time() - data->philo[i].store ;
+			pthread_mutex_unlock(&data->death);
+			if (res > data->t_die)
+			{
+				printf_msg("is dead", &data->philo[i], 1);
+				return ;
+			}
 			i++;
+		}
 	}
 }
 

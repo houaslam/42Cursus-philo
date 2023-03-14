@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:17:50 by houaslam          #+#    #+#             */
-/*   Updated: 2023/03/13 15:16:02 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/03/13 17:23:10 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int					now_time(void);
 int					right_time(struct timeval time);
 
 //outils
-int					ft_atoi(const char *str);
+int					ft_atoi(char *str);
 void				ft_usleep(unsigned long time_2);
 void				printf_msg(char *str, t_philo *philo);
 void				ft_putstr_fd(char *s, int fd);

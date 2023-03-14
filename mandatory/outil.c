@@ -6,13 +6,13 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:52:58 by houaslam          #+#    #+#             */
-/*   Updated: 2023/03/12 17:54:27 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/03/14 21:59:00 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_atoi(const char *str)
+int	ft_atoi(char *str)
 {
 	int				i;
 	int				sign;
@@ -51,9 +51,9 @@ unsigned long	right_time(struct timeval time)
 
 void	printf_msg(char *str, t_philo *philo, int f)
 {
+	pthread_mutex_lock(&philo->data->print);
 	printf("%lu ms philo %d %s\n", now_time() \
 	- right_time(philo->data->start_time), philo->nb, str);
-	pthread_mutex_lock(&philo->data->print);
 	if (f != 1)
 		pthread_mutex_unlock(&philo->data->print);
 }

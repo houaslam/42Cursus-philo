@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 20:29:16 by houaslam          #+#    #+#             */
-/*   Updated: 2023/03/13 14:24:48 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/03/14 21:56:27 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	*check_loop_b(void *arg)
 	while (1)
 	{
 		res = now_time() - right_time(philo->store);
-		printf("");
 		if (res > philo->data->t_die)
 		{
 			printf_msg("is dead", philo);

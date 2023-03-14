@@ -6,13 +6,13 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:52:58 by houaslam          #+#    #+#             */
-/*   Updated: 2023/03/10 11:55:28 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/03/13 17:26:35 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-int	ft_atoi(const char *str)
+int	ft_atoi(char *str)
 {
 	int				i;
 	int				sign;

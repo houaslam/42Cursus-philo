@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 20:26:20 by houaslam          #+#    #+#             */
-/*   Updated: 2023/03/11 20:57:59 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/03/14 21:55:36 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	taking_fork_action_b(t_philo *philo)
 void	eating_action_b(t_philo *philo)
 {
 	printf_msg("is eating", philo);
+	gettimeofday(&philo->store, NULL);
 	ft_usleep(philo->data->t_eat);
 	sem_post(&philo->death);
-	gettimeofday(&philo->store, NULL);
 	sem_wait(&philo->death);
 	sem_wait(philo->data->eat);
 	philo->m_nb++;
