@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:17:50 by houaslam          #+#    #+#             */
-/*   Updated: 2023/03/13 17:23:10 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/03/31 15:03:19 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef struct t_philo
 	int				k;
 	int				nb;
 	int				m_nb;
-	int				death;
 	pid_t			id;
 	sem_t			rf;
 	sem_t			lf;
@@ -47,7 +46,6 @@ typedef struct t_data
 	int				t_sleep;
 	sem_t			*eat;
 	sem_t			*sem;
-	sem_t			*death;
 	sem_t			*print;
 	t_philo			*philo;
 	pthread_t		t;

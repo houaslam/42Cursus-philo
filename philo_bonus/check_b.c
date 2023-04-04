@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 20:29:16 by houaslam          #+#    #+#             */
-/*   Updated: 2023/03/14 21:56:27 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/03/31 15:01:10 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	check_wait(t_data *data)
 				kill(data->philo[i++].id, SIGKILL);
 			sem_close(data->sem);
 			free(data);
-			free(data->philo);
 			exit(0);
 		}
 		i++;

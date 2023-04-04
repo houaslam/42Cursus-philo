@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:46:51 by houaslam          #+#    #+#             */
-/*   Updated: 2023/03/13 15:16:43 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/04/01 15:47:36 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,9 @@ typedef struct t_philo
 {
 	int				nb;
 	int				m_nb;
-	int				d;
-	int				death;
 	pthread_t		t;
 	struct t_data	*data;
 	unsigned long	store;
-	struct timeval	d2;
-	struct timeval	d1;
 	pthread_mutex_t	*rf;
 	pthread_mutex_t	*lf;
 }				t_philo;

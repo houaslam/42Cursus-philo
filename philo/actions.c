@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 20:26:20 by houaslam          #+#    #+#             */
-/*   Updated: 2023/03/14 21:55:25 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/04/04 13:38:33 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ void	ft_usleep(unsigned long time_2)
 	unsigned long	time;
 
 	time = now_time();
-	while ((now_time() - time) <= time_2)
+	while ((now_time() - time) < time_2)
 		usleep(100);
 }
 
 void	eating_action(t_philo *philo)
 {
-	printf_msg("is eating", philo, 0);
 	philo->store = now_time();
+	printf_msg("is eating", philo, 0);
 	ft_usleep(philo->data->t_eat);
 	pthread_mutex_unlock(philo->rf);
 	pthread_mutex_unlock(philo->lf);

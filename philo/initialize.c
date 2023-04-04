@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:15:34 by houaslam          #+#    #+#             */
-/*   Updated: 2023/03/13 15:08:50 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/04/04 13:25:11 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	initialize_philo(t_data *data)
 		data->philo[i].nb = i + 1;
 		data->philo[i].data = data;
 		data->philo[i].m_nb = 0;
-		data->philo[i].death = 0;
 		data->philo[i].store = 0;
 		i++;
 	}
@@ -61,7 +60,8 @@ void	initialize_threads(t_data *data)
 		data->philo[i].store = now_time();
 		pthread_create(&data->philo[i].t, \
 		NULL, globale_action, &data->philo[i]);
-		usleep(100);
+		pthread_detach(data->philo[i].t);
+		ft_usleep(100);
 		i++;
 	}
 }

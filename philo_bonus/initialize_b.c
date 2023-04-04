@@ -6,7 +6,7 @@
 /*   By: houaslam <houaslam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:15:34 by houaslam          #+#    #+#             */
-/*   Updated: 2023/03/12 22:42:42 by houaslam         ###   ########.fr       */
+/*   Updated: 2023/04/04 13:32:28 by houaslam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	initialize_childs(t_data *data)
 		data->philo[i].nb = i + 1;
 		data->philo[i].data = data;
 		data->philo[i].m_nb = 0;
-		data->philo[i].death = 0;
-		gettimeofday(&data->philo[i].store, NULL);
 		i++;
 	}
 }
@@ -37,7 +35,6 @@ void	initialize_semaphore(t_data *data)
 	data->sem = sem_open("/sem", O_CREAT | O_EXCL, 0644, data->p_nb);
 	data->print = sem_open("/print", O_CREAT | O_EXCL, 0644, 1);
 	data->eat = sem_open("/eat", O_CREAT | O_EXCL, 0644, 1);
-	data->death = sem_open("/die", O_CREAT | O_EXCL, 0644, 1);
 }
 
 t_data	*initialize_general_b(int ac, char **av)
